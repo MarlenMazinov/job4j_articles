@@ -29,9 +29,7 @@ public class SimpleArticleService implements ArticleService {
         IntStream.iterate(0, i -> i < count, i -> i + 1)
                 .peek(i -> {
                             LOGGER.info("Сгенерирована статья № {}", i);
-                            SoftReference<Article> soft =
-                                    new SoftReference<>(articleStore.
-                                            save(articleGenerator.generate(words)));
+                            articleStore.save(articleGenerator.generate(words));
                         }
                 ).count();
     }
