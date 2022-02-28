@@ -27,11 +27,11 @@ public class SimpleArticleService implements ArticleService {
         LOGGER.info("Генерация статей в количестве {}", count);
         var words = wordStore.findAll();
         IntStream.iterate(0, i -> i < count, i -> i + 1)
-                .peek(i -> {
+                .forEach(i -> {
                             LOGGER.info("Сгенерирована статья № {}", i);
                             articleStore.save(articleGenerator.generate(words));
                         }
-                ).count();
+                );
     }
 }
 
